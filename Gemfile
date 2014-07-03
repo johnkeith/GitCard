@@ -25,6 +25,6 @@ group :development do
 end
 
 group :test do
-
+  gem 'coveralls', require: false
 end
 
