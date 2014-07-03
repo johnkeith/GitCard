@@ -8,6 +8,7 @@ feature "signed up user customizes profile", %q(
   # I can sign up for an account and import my Github repos
   # I can choose which repos I want to display on my page
   # I will be redirected to my page after choosing my repos
+  
   scenario "user has not choosen what repos to display" do
     user = FactoryGirl.create(:user)
 

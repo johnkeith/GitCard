@@ -11,14 +11,15 @@ class Repo < ActiveRecord::Base
       end
     end
   end
+  # perhaps only use the above method b/c that way it helps guard against redudency and errors
 
-  def self.add_new_user_repos(octokit_client, user)
-    octokit_client.repositories.each do |repo|
-      new_repo = Repo.create(user_id: user.id, name: repo[:name],
-        full_name: repo[:full_name], html_url: repo[:html_url],
-        profile_visibility: true )
-      RepoLanguage.new_repo_language(octokit_client, new_repo)
-    end
-  end
+  # def self.add_new_user_repos(octokit_client, user)
+  #   octokit_client.repositories.each do |repo|
+  #     new_repo = Repo.create(user_id: user.id, name: repo[:name],
+  #       full_name: repo[:full_name], html_url: repo[:html_url],
+  #       profile_visibility: true )
+  #     RepoLanguage.new_repo_language(octokit_client, new_repo)
+  #   end
+  # end
 
 end

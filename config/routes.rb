@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+  resources :repos, only: [:edit, :update]
 
   get ':username', to: 'profiles#show', as: :profile
   get ':username/edit', to: 'profiles#edit', as: :edit_profile
