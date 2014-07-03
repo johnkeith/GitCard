@@ -14,7 +14,7 @@ feature "user authorizes with github and creates account", %q(
 
   scenario "user creates an account and signs in" do
     user = FactoryGirl.create(:user, profile_created: true)
-  
+
     set_omniauth(user)
 
     visit '/'
