@@ -13,14 +13,18 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'haml-rails'
 gem 'omniauth-github'
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'pry-rails'
+end
+
 group :development do
   gem 'spring'
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'pry-rails'
+  gem 'coveralls', require: false
 end
 
