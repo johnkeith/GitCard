@@ -12,7 +12,7 @@ feature "signed up user customizes profile", %q(
   scenario "CREATE MOCK API REQUEST USING VCR" do 
     user = FactoryGirl.create(:user, access_token: "312d4d07769cd79c54fed381da67ac42c39495ab")
     
-    VCR.use_cassette('user_requests_repos') do
+    VCR.use_cassette('github_repos_request') do
       visit edit_profile_path(user.username)
     end
 

@@ -61,3 +61,11 @@ end
 ```
 
 Inside your scenario, call the use_cassette method on the VCR class in order to start recording the API request. In my case, this API call is triggered upon a user navigating to the edit path for their profile page. 
+
+```ruby
+VCR.use_cassette('user_requests_repos') do
+  visit edit_profile_path(user.username)
+end
+```
+
+Next came adding the profiles controller, model and the migrations to create the repos table, along with associations on the user and repo model.
