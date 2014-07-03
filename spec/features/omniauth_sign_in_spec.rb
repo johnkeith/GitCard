@@ -24,5 +24,4 @@ feature "user authorizes with github and creates account", %q(
     expect(page).to_not have_content 'Sign in with Github'
     expect(page).to have_content 'Sign out'
   end
-
 end
