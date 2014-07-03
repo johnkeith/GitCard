@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :repos
+
   def self.find_or_create_from_omniauth(auth)
     provider = auth.provider
     uid = auth.uid
