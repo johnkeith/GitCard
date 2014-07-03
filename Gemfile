@@ -28,5 +28,8 @@ end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'vcr'
+  gem 'webmock'
+  gem 'rack_session_access'
 end
 

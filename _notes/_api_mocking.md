@@ -69,3 +69,16 @@ end
 ```
 
 Next came adding the profiles controller, model and the migrations to create the repos table, along with associations on the user and repo model.
+
+The key thing was setting up all the models and associations that needed to be created.
+
+```ruby 
+scenario "CREATE MOCK API REQUEST USING VCR" do 
+  user = FactoryGirl.create(:user, access_token: "123456")
+
+  page.set_rack_session(:user_id => user.id)
+
+  VCR.use_cassette('github_repos_request') do
+    visit edit_profile_path(user.username)
+  end
+end

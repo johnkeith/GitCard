@@ -8,46 +8,36 @@ feature "signed up user customizes profile", %q(
   # I can sign up for an account and import my Github repos
   # I can choose which repos I want to display on my page
   # I will be redirected to my page after choosing my repos
+  scenario "user has not choosen what repos to display" do
+    user = FactoryGirl.create(:user)
 
-  scenario "CREATE MOCK API REQUEST USING VCR" do 
-    user = FactoryGirl.create(:user, access_token: "312d4d07769cd79c54fed381da67ac42c39495ab")
+    page.set_rack_session(user_id: user.id)
     
-    VCR.use_cassette('github_repos_request') do
+    VCR.use_cassette('github_repos_request') do 
       visit edit_profile_path(user.username)
     end
 
+    expect(page).to have_content("Thanks for signing up for GitCard! Please click
+      on the checkboxes next to the repos you want to display on your profile page.")
+    expect(page).to have_content("HubMe") 
+    expect(page).to have_content("CarMan")
   end
 
-  # scenario "user has not choosen what repos to display" do
-  #   user = FactoryGirl.create(:user)
+  scenario "user chooses repos to display" do
+    user = FactoryGirl.create(:user)
 
-  #   page.set_rack_session(user_id: user.id)
+    page.set_rack_session(user_id: user.id)
     
-  #   VCR.use_cassette('ok_client.repos') do 
-  #     visit edit_profile_path(user.username)
-  #   end
+    VCR.use_cassette('github_repos_request') do 
+      visit edit_profile_path(user.username)
+    end
 
-  #   expect(page).to have_content("Thanks for signing up for GitCard! Please click
-  #     on the checkboxes next to the repos you want to display on your profile page.")
-  #   expect(page).to have_content("HubMe") 
-  #   expect(page).to have_content("CarMan")
-  # end
+    check "HubMe"
+    check "CarMan"
 
-  # scenario "user chooses repos to display" do
-  #   user = FactoryGirl.create(:user)
+    expect(page).to have_content("Remember, you can always add these repos to your page later by clicking the settings wheel in the top right.")
 
-  #   page.set_rack_session(user_id: user.id)
-    
-  #   VCR.use_cassette('ok_client.repos') do 
-  #     visit edit_profile_path(user.username)
-  #   end
-
-  #   check "HubMe"
-  #   check "CarMan"
-
-  #   expect(page).to have_content("Remember, you can always add these repos to your page later by clicking the settings wheel in the top right.")
-
-  #   click_button "View Profile"
-  # end
+    click_button "View Profile"
+  end
 
 end
