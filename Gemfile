@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'omniauth-github'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
