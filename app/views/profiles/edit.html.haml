@@ -4,7 +4,7 @@
   = repo.name
 
   = simple_form_for repo, remote: true, format: :json, html: { class: "repo-visibility" } do |f|
-    = f.input :profile_visibility, as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle" }
+    = f.input :profile_visibility, label: "", as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle" }
   / = simple_form_for repo, remote: true, format: :json,
   /   html: { class: "repo_visibility" } do |f|
   /   = f.hidden_field :profile_visibility,

@@ -5,7 +5,7 @@ class ReposController < ApplicationController
     respond_to do |format|
       if @repo.update(repo_params)
         format.html { redirect_to edit_profile_path(current_user.username) }
-        format.json { render json: @repo, status: :successful }
+        format.json { render json: @repo, status: 200 }
       else
         format.html { render action: "edit" }
         format.json {}
@@ -18,7 +18,7 @@ class ReposController < ApplicationController
 
     respond_to do |format|
       if @repo.toggle!(:profile_visibility)
-        format.json { render json: @repo, status: :successful }
+        format.json { render json: @repo, status: 200 }
       else
         format.json {}
       end
