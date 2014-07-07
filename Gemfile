@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'haml-rails'
 gem 'omniauth-github'
 gem 'octokit'
+gem 'simple_form'
 
 group :development, :test do
   gem 'dotenv-rails'

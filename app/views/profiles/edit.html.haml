@@ -1,4 +1,12 @@
 %p This is the edit profile page
 
+/ - @repos.each do |repo|
+/   = repo.name
+
+/   = button_to "#{repo.profile_visibility}", { action: "update_visibility", id: repo.id }, remote: true, form: { "data-type" => "json" }, form_class: "repo-visibility repo-#{repo.id}"
+
 - @repos.each do |repo|
-  %p= repo.full_name
+  = repo.name
+  = form_for repo, remote: true, html: { class: "repo_visibility" } do |f|
+    = f.hidden_field :profile_visibility
+    = f.submit
