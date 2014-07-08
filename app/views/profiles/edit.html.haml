@@ -1,0 +1,19 @@
+%p This is the edit profile page
+%p 
+  Thanks for signing up for GitCard! Please click on the checkboxes next to the
+  repos you want to display on your profile page.
+- @repos.each do |repo|
+  = simple_form_for repo, remote: true, format: :json, html: { class: "repo-visibility" } do |f|
+    = f.label repo.name
+    = f.input :profile_visibility, label: "", as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle", "data-repo-name" => "#{repo.name}" }
+  / = simple_form_for repo, remote: true, format: :json,
+  /   html: { class: "repo_visibility" } do |f|
+  /   = f.hidden_field :profile_visibility,
+  /     value: (repo.profile_visibility ? 'f' : 't')
+  /   = f.submit repo.profile_visibility ? "Visible" : "Hidden"
+
+%p 
+  Remember, you can always change the repos displayed on your profile by
+  clicking the settings wheel in the top right.
+
+= link_to "Go to profile page", profile_path(current_user.username)

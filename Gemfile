@@ -12,10 +12,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'haml-rails'
 gem 'omniauth-github'
+gem 'octokit'
+gem 'simple_form'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'launchy'
   gem 'factory_girl_rails'
   gem 'pry-rails'
 end
@@ -26,5 +30,8 @@ end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'vcr'
+  gem 'webmock'
+  gem 'rack_session_access'
 end
 
