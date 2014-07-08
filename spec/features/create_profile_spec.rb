@@ -21,8 +21,9 @@ feature "signed up user customizes profile", %q(
     expect(page).to have_content("Thanks for signing up for GitCard! Please
       click on the checkboxes next to the repos you want to display on your
       profile page.")
-    expect(page).to have_content("HubMe") 
-    expect(page).to have_content("CarMan")
+
+    expect(page).to have_content("Ruby2048") 
+    expect(page).to have_content("Carman")
   end
 
   scenario "user chooses repos to display" do
