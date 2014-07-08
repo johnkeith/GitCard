@@ -4,4 +4,4 @@ rvm:
 env:
   - DB=postgressql
 before_script:
-  - psql -c 'create database GitCard_test;' -U postgres
+  - psql -c 'create database gitcard_test;' -U postgres
