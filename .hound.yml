@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - config/initializers/simple_form.rb
+
+TrailingWhitespace:
+  Description: 'Avoid trailing whitespace.'
+  Enabled: false

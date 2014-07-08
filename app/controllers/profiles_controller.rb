@@ -1,9 +1,7 @@
 class ProfilesController < ApplicationController
   def edit
     ok_client = OctokitConnector.create(current_user)
-
     Repo.refresh_user_repos(ok_client, current_user)
-    
     @repos = current_user.repos.order(:name)
   end
   
