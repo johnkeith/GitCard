@@ -18,8 +18,9 @@ feature "signed up user customizes profile", %q(
       visit edit_profile_path(user.username)
     end
 
-    expect(page).to have_content("Thanks for signing up for GitCard! Please click
-      on the checkboxes next to the repos you want to display on your profile page.")
+    expect(page).to have_content("Thanks for signing up for GitCard! Please
+      click on the checkboxes next to the repos you want to display on your
+      profile page.")
     expect(page).to have_content("HubMe") 
     expect(page).to have_content("CarMan")
   end
@@ -33,12 +34,12 @@ feature "signed up user customizes profile", %q(
       visit edit_profile_path(user.username)
     end
 
-    check "HubMe"
-    check "CarMan"
+    expect(page).to have_css('input[data-repo-name="HubMe"]')
+    expect(page).to have_css('input[data-repo-name="wallofbeer"]')
 
-    expect(page).to have_content("Remember, you can always add these repos to your page later by clicking the settings wheel in the top right.")
-
-    click_button "View Profile"
+    expect(page).to have_content("Remember, you can always change the repos
+      displayed on your profile by clicking the settings wheel in the top
+      right.")
   end
 
 end

@@ -12,5 +12,6 @@ $(document).ready(function(){
     .bind("ajax:complete", toggleLoading())
     .bind("ajax:success", function(e, data, status, xhr) {
       console.log(data);
+      // need to change the text of the button
     });
 });
