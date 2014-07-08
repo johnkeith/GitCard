@@ -28,10 +28,14 @@ feature "", %q(
     langs = FactoryGirl.create_list(:language, 3)
     repos.each do |repo|
       langs.each do |lang|
-        FactoryGirl.create(:repo_language, repo: repo, language: lang)
+        FactoryGirl.create(:repo_language, {repo: repo, language: lang})
       end
     end
-    binding.pry
+
+    visit "/#{user.username}"
+
+    expect(page).to have_content langs[0].name
+    expect(page).to have_content repo_language[0].amount_in_bytes
   end
 
   scenario "user sees velocity statistics on profile" do
