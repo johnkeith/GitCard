@@ -2,6 +2,9 @@
   This is the profile page for
   = @user.username
 
+= image_tag @user.avatar_url, alt: "#{@user.username}",
+  class: "profile-page-portrait"
+
 .profile-repos
   %ul
     - @repos.each do |repo|

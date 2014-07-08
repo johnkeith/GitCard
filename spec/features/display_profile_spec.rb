@@ -52,6 +52,8 @@ feature "", %q(
   scenario "user's github profile picture appears on profile" do
     user = FactoryGirl.create(:user, profile_created: true)
 
-    expect(page).to have_xpath "//a[@href=\"#{user.avatar_url}\"]"
+    visit "/#{user.username}"
+
+    expect(page).to have_xpath "//img[@src=\"#{user.avatar_url}\"]"
   end
 end
