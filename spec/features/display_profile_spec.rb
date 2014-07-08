@@ -26,6 +26,7 @@ feature "", %q(
     user = FactoryGirl.create(:user, profile_created: true)
     repos = FactoryGirl.create_list(:repo, 3, user: user)
     langs = FactoryGirl.create_list(:language, 3)
+    lang_calc = LanguageCalculator.new(user)
     repos.each do |repo|
       langs.each do |lang|
         FactoryGirl.create(:repo_language, {repo: repo, language: lang})
@@ -35,12 +36,22 @@ feature "", %q(
     visit "/#{user.username}"
 
     expect(page).to have_content langs[0].name
-    expect(page).to have_content repo_language[0].amount_in_bytes
+    
+    lang_calc.in_bytes.each do |lang, amount|
+      expect(page).to have_content amount
+    end
+
+    lang_calc.in_percents(lang_calc.in_bytes).each do |lang, amount|
+      expect(page).to have_content amount
+    end
   end
 
   scenario "user sees velocity statistics on profile" do
   end
 
   scenario "user's github profile picture appears on profile" do
+    user = FactoryGirl.create(:user, profile_created: true)
+
+    expect(page).to have_xpath "//a[@href=\"#{user.avatar_url}\"]"
   end
 end
