@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :repos
+  has_many :repo_languages, through: :repos
+  has_many :languages, through: :repo_languages
 
   def self.find_or_create_from_omniauth(auth)
     provider = auth.provider

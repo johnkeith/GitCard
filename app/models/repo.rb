@@ -1,5 +1,7 @@
 class Repo < ActiveRecord::Base
   belongs_to :user
+  has_many :repo_languages
+  has_many :languages, through: :repo_languages
 
   def self.refresh_user_repos(octokit_client, user)
     octokit_client.repositories.each do |repo|
