@@ -21,6 +21,5 @@ class ProfilesController < ApplicationController
     @repos = @user.repos.where(profile_visibility: true)
 
     @velocity = VelocityCalculator.new(@user)
-    binding.pry
   end
 end

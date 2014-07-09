@@ -21,6 +21,14 @@ class VelocityCalculator
     commits_total / days
   end
 
+  def calc_sum(time_data)
+    total = 0
+    time_data.each do |day|
+      total += day[1]
+    end
+    total
+  end
+
   def for_past_six_months
     calc_velocity(@calendar_data, 182)
   end
@@ -67,25 +75,28 @@ class VelocityCalculator
     @calendar_data.select { |item| item[0].match(/-#{m}-/) }
   end
 
+  def slice_week(start_date)
+    i = @calendar_data.find_index { |item| item[0] == start_date }
+    @calendar_data[i - 6..i]
+  end
+
   def for_month(month)
     month_data = slice_month(month)
     calc_velocity(month_data, month_data.length - 1)
   end
 
   def sum_for_month(month)
-    total = 0
     month_data = slice_month(month)
-    month_data.each do |day|
-      total += day[1]
-    end
-    total
+    calc_sum(month)
   end
 
-  def for_week(start_day)
-    
+  def for_week(start_date)
+    week_data = slice_week(start_date)
+    calc_velocity(week_data, 6)
   end
 
-  def sum_for_week(start_day)
-
+  def sum_for_week(start_date)
+    week_data = slice_week(start_date)
+    calc_sum(week_data)
   end
 end
