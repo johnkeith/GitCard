@@ -13,7 +13,9 @@ feature "", %q(
     user = FactoryGirl.create(:user, profile_created: true)
     repos = FactoryGirl.create_list(:repo, 3, user: user)
 
-    visit "/#{user.username}"
+    VCR.use_cassette('github_calendar_data_request') do
+      visit "/#{user.username}"
+    end
 
     expect(page).to have_content repos[0].name
     expect(page).to have_content repos[1].name
@@ -33,7 +35,9 @@ feature "", %q(
       end
     end
 
-    visit "/#{user.username}"
+    VCR.use_cassette('github_calendar_data_request') do
+      visit "/#{user.username}"
+    end
 
     expect(page).to have_content langs[0].name
     
@@ -48,16 +52,14 @@ feature "", %q(
 
   scenario "user sees velocity statistics on profile" do
     user = FactoryGirl.create(:user, profile_created: true)
-
-    velo_calc = VelocityCalculator.new(user)
-    
-    binding.pry
   end
 
   scenario "user's github profile picture appears on profile" do
     user = FactoryGirl.create(:user, profile_created: true)
 
-    visit "/#{user.username}"
+    VCR.use_cassette('github_calendar_data_request') do
+      visit "/#{user.username}"
+    end
 
     expect(page).to have_xpath "//img[@src=\"#{user.avatar_url}\"]"
   end

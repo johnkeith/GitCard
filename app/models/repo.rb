@@ -16,6 +16,9 @@ class Repo < ActiveRecord::Base
       end
     end
   end
+
+  def self.refresh_repo(repo)
+  end
   # perhaps only use the above method b/c that way it helps guard against
   # redudency and errors
   # will want to test for sql speeds on deployed website
