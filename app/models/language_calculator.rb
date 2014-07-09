@@ -10,8 +10,9 @@ class LanguageCalculator
       langs_hash[lang[:name]] = 0
     end
 
-    @user.repo_languages.each do |repo_language|
-      lang = Language.find_by(id: repo_language.language_id).name
+    @user.repo_languages.includes(:language).each do |repo_language|
+      lang = repo_language.language.name
+      # lang = Language.find_by(id: repo_language.language_id).name
       langs_hash[lang] += repo_language.amount_in_bytes
     end
 
