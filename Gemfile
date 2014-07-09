@@ -33,5 +33,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'rack_session_access'
+  gem 'valid_attribute'
+  gem 'shoulda-matchers'
 end
 

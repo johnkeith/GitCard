@@ -1,3 +1,19 @@
 %p 
   This is the profile page for
   = @user.username
+
+= image_tag @user.avatar_url, alt: "#{@user.username}",
+  class: "profile-page-portrait"
+
+.profile-repos
+  %ul
+    - @repos.each do |repo|
+      %li
+        %a{href: "#{repo.html_url}"}= repo.name 
+.profile-languages
+  %ul
+    - @languages_bytes.each do |language, quantity|
+      %li= language + " | " + quantity.to_s 
+  %ul
+    - @languages_percents.each do |language, percent|
+      %li= language + " | " + percent.to_s
