@@ -47,6 +47,11 @@ feature "", %q(
   end
 
   scenario "user sees velocity statistics on profile" do
+    user = FactoryGirl.create(:user, profile_created: true)
+
+    velo_calc = VelocityCalculator.new(user)
+    
+    binding.pry
   end
 
   scenario "user's github profile picture appears on profile" do
