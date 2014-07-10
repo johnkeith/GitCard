@@ -9,11 +9,25 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-  - if notice
-    %p= notice    
-  - if current_user 
-    = link_to "Sign out", signout_path
-  - else
-    = link_to "Sign in with Github", "/auth/github"
-  
-  = yield
+    .container-wrapper
+      .container
+        / .row.row-offcanvas.row-offcanvas-right
+        /   .col-xs-12
+        /     .pull-right
+        /       .button{type: "button", class: "btn btn-primary", "data-toggle" => "offcanvas"} ShowMenu
+        /   .col-md-12.sidebar-offcanvas#sidebar{role: "navigation"}
+        /     %a{ href: "#", class: "" } Link
+        /     %a{ href: "#", class: "" } Link
+        /     %a{ href: "#", class: "" } Link
+        /     %a{ href: "#", class: "" } Link
+        /     %a{ href: "#", class: "" } Link
+        /     %a{ href: "#", class: "" } Link
+        /     %a{ href: "#", class: "" } Link
+      - if notice
+        %p= notice    
+      - if current_user 
+        = link_to "Sign out", signout_path
+      - else
+        = link_to "Sign in with Github", "/auth/github"
+      
+      = yield

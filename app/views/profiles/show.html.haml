@@ -1,19 +1,28 @@
-%p 
-  This is the profile page for
-  = @user.username
+#profile-page
+  .row.text-center
+    .profile-header
+      = image_tag @user.avatar_url, alt: "#{@user.username}",
+        class: "profile-page-portrait"
+      .page-header
+        %h1= @user.username
 
-= image_tag @user.avatar_url, alt: "#{@user.username}",
-  class: "profile-page-portrait"
 
-.profile-repos
-  %ul
-    - @repos.each do |repo|
-      %li
-        %a{href: "#{repo.html_url}"}= repo.name 
-.profile-languages
-  %ul
-    - @languages_bytes.each do |language, quantity|
-      %li= language + " | " + quantity.to_s 
-  %ul
-    - @languages_percents.each do |language, percent|
-      %li= language + " | " + percent.to_s
+  .row
+    .col-md-12 
+    .profile-languages
+      .profile-languages-percents
+        %canvas#languages-doughnut
+        #languages-doughnut-legend
+  .row
+    .col-md-12
+      .profile-repos
+        - @repos.each do |repo|
+          .panel.panel-default
+            %a{href: "#{repo.html_url}"}
+              .panel-heading= repo.name
+              - if !repo.description.nil? || !repo.description == ""
+                .panel-body= repo.description
+
+:javascript
+  buildLanguagesDoughnut('#{ j @languages_percents.to_json }');
+

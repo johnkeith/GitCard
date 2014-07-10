@@ -24,7 +24,7 @@ class LanguageCalculator
     total = langs_hash.values.sum
 
     langs_hash.each do |lang, amount|
-      langs_percents[lang] = (amount / total.to_f) * 100
+      langs_percents[lang] = ((amount / total.to_f) * 100).ceil
     end
 
     langs_percents
