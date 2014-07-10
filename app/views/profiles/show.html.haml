@@ -8,10 +8,12 @@
 .row
   .col-md-6
     .profile-repos
-      %ul
-        - @repos.each do |repo|
-          %li
-            %a{href: "#{repo.html_url}"}= repo.name
+      - @repos.each do |repo|
+        .panel.panel-default
+          %a{href: "#{repo.html_url}"}
+            .panel-heading= repo.name
+            - if !repo.description.nil? || !repo.description == ""
+              .panel-body= repo.description
   .col-md-6 
     .profile-languages
       .profile-languages-percents

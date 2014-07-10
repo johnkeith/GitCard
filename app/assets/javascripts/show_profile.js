@@ -1,5 +1,5 @@
 function buildLanguagesDoughnut(data){
-  var languages = $.parseJSON(data)
+  var languages = $.parseJSON(data);
   var langsCanvas = $("#languages-doughnut")[0].getContext("2d");
   var langsData = [];
   var legendTemplate = "<ul class=\"languages-doughnut-legend-item\">";
@@ -8,16 +8,16 @@ function buildLanguagesDoughnut(data){
     luminosity: "dark"
   });
 
-  each_index = 0
+  each_index = 0;
   $.each(languages, function(language, percent){
     langsData.push({
-      value: percent, 
-      color: randomColors[each_index], 
-      highlight: randomColors[each_index], 
+      value: percent,
+      color: randomColors[each_index],
+      highlight: randomColors[each_index],
       label: language
     });
     legendTemplate += ("<li style=\"color:" + randomColors[each_index] + ";\">" +
-      language + ": " + percent + "%</li>")
+      language + ": " + percent + "%</li>");
     each_index ++;
   });
 

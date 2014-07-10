@@ -16,11 +16,10 @@ class Repo < ActiveRecord::Base
   end
 
   def self.refresh_repo(repo, user)
-    binding.pry
     repo_to_update = Repo.find_by(user_id: user.id, name: repo[:name])
     repo_to_update.update_columns(
       user_id: user.id, name: repo[:name], full_name: repo[:full_name],
-      html_url: repo[:html_url]
+      html_url: repo[:html_url], description: repo[:description]
     )
     repo_to_update
   end
@@ -35,7 +34,8 @@ class Repo < ActiveRecord::Base
   def self.create_repo(repo, user)
     Repo.create(
       user_id: user.id, name: repo[:name], full_name: repo[:full_name],
-      html_url: repo[:html_url], profile_visibility: true
+      html_url: repo[:html_url], description: repo[:description],
+      profile_visibility: true
     )
   end
 end
