@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require chart
 //= require_tree .
+$(document).ready(function(){
+  Chart.defaults.global.responsive = true;
+})

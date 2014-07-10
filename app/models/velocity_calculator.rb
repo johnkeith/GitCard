@@ -87,7 +87,7 @@ class VelocityCalculator
 
   def sum_for_month(month)
     month_data = slice_month(month)
-    calc_sum(month)
+    calc_sum(month_data)
   end
 
   def for_week(start_date)
