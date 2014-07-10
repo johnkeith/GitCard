@@ -4,7 +4,7 @@
       = image_tag @user.avatar_url, alt: "#{@user.username}",
         class: "profile-page-portrait"
       .page-header
-        %h1= @user.username
+        %h1= @user.full_name
 
 
   .row
@@ -25,4 +25,3 @@
 
 :javascript
   buildLanguagesDoughnut('#{ j @languages_percents.to_json }');
-
