@@ -36,8 +36,8 @@ function buildLanguagesDoughnut(data){
       highlight: randomColors[each_index],
       label: language
     });
-    legendTemplate += ("<li style=\"color:" + randomColors[each_index] + ";\">" +
-      language + ": " + percent + "%</li>");
+    legendTemplate += ("<li style=\"background-color:" + randomColors[each_index] +
+      ";color:white;padding:15px\">" + language + ": " + percent + "%</li>");
     each_index ++;
   });
 

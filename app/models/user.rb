@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   def self.find_or_create_from_omniauth(auth)
     provider = auth.provider
     uid = auth.uid
-    binding.pry
+
     find_by(provider: provider, uid: uid) || create_from_omniauth(auth)
   end
 
@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
       full_name: auth.info.name,
       avatar_url: auth.info.image,
       access_token: auth.credentials.token
-      websites: auth.info.urls
     )
   end
 end
