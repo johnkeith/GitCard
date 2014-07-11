@@ -1,27 +1,38 @@
 #profile-page
-  .row.text-center
-    .profile-header
-      = image_tag @user.avatar_url, alt: "#{@user.username}",
-        class: "profile-page-portrait"
-      .page-header
-        %h1= @user.full_name
+  = image_tag @user.avatar_url, alt: "#{@user.username}",
+    class: "profile-page-portrait"
+  %h1= @user.full_name
+  %h3 
+    Githubber since
+    = @user.gh_account_created
+  %h3
+    Total Repos: 
+    = @user.repos.count
+  %h3
+    Commits in Last Year: 
+    = @velocity.sum_for_year
+  %h3
+    Languages Used: 
+    = @user.languages.distinct.count
+  / %canvas#languages-doughnut
 
+  / #languages-doughnut-legend
 
-  .row
-    .col-md-12 
-    .profile-languages
-      .profile-languages-percents
-        %canvas#languages-doughnut
-        #languages-doughnut-legend
-  .row
-    .col-md-12
-      .profile-repos
-        - @repos.each do |repo|
-          .panel.panel-default
-            %a{href: "#{repo.html_url}"}
-              .panel-heading= repo.name
-              - if !repo.description.nil? || !repo.description == ""
-                .panel-body= repo.description
+  / .row
+  /   .col-md-12 
+  /   .profile-languages
+  /     .profile-languages-percents
+  /       %canvas#languages-doughnut
+  /       #languages-doughnut-legend
+  / .row
+  /   .col-md-12
+  /     .profile-repos
+  /       - @repos.each do |repo|
+  /         .panel.panel-default
+  /           %a{href: "#{repo.html_url}"}
+  /             .panel-heading= repo.name
+  /             - if !repo.description.nil? || !repo.description == ""
+  /               .panel-body= repo.description
 
 :javascript
   buildLanguagesDoughnut('#{ j @languages_percents.to_json }');

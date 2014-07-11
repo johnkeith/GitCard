@@ -99,4 +99,8 @@ class VelocityCalculator
     week_data = slice_week(start_date)
     calc_sum(week_data)
   end
+
+  def sum_for_year
+    calc_sum(@calendar_data)
+  end
 end

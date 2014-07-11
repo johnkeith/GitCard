@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
       username: auth.info.nickname,
       full_name: auth.info.name,
       avatar_url: auth.info.image,
-      access_token: auth.credentials.token
+      access_token: auth.credentials.token, 
+      gh_account_created: auth.extra.raw_info.created_at
     )
   end
 end
