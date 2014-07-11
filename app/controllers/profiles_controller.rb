@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     # need authentication filter, better way of redirect users 
     # away from profiles that don't exist
     @user = User.find_by(username: params[:username])
-    
+
     if !@user.profile_created
       current_user.update_attribute(:profile_created, true)
       redirect_to edit_profile_path(current_user.username)

@@ -27,7 +27,8 @@ function buildLanguagesDoughnut(data){
   var randomColors = randomColor({
     count: Object.keys(languages).length,
     luminosity: "dark", 
-    brightness: "bright"
+    brightness: "bright",
+    hue: "red"
   });
 
   each_index = 0;
@@ -38,8 +39,8 @@ function buildLanguagesDoughnut(data){
       highlight: randomColors[each_index],
       label: language
     });
-    legendTemplate += ("<div class=\"col-md-6\"><div style=\"border-left:4px solid " + randomColors[each_index] +
-      ";color: " + randomColors[each_index] + ";padding:15px;\" class=\"panel\">" + language + ": " + percent + "%</div></div>");
+    legendTemplate += ("<div class=\"col-md-6\"><div style=\"border-left:6px solid " + randomColors[each_index] +
+      ";color: black;padding:15px;\" class=\"panel\">" + language + ": " + percent + "%</div></div>");
     each_index ++;
   });
 

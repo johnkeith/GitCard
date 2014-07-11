@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'omniauth-github'
 gem 'octokit'
 gem 'simple_form'
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'dotenv-rails'
