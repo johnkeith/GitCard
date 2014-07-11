@@ -1,50 +1,57 @@
 #profile-page
-  .row
-    .col-md-8.col-md-offset-2
-      .profile-header
-        .profile-portrait-wrapper
-          = image_tag @user.avatar_url, alt: "#{@user.username}",
-          class: "profile-portrait"
-        .profile-header-info
-          %h1= @user.full_name
-          .lead A short description about user. Here's a little more text to test spacing. What else can be said?
-  .row
-    .col-md-8.col-md-offset-2
-      .profile-stats-summary.well
-        %h3 
-          Githubber since
-          %strong= @user.gh_account_created
-        %h3
-          Total Repos: 
-          %strong= @user.repos.count
-        %h3
-          Languages Used: 
-          %strong= @user.languages.distinct.count
-        %h3
-          Commits This Year: 
-          %strong= @velocity.sum_for_year
-
-  .row
-    .col-md-8.col-md-offset-2
-      %h1.section-header Featured Repos
-      .well
-        - @repos.each do |repo|
-          .panel.panel-default
-            %a{href: "#{repo.html_url}"}
-              .panel-heading= repo.name
-              - if !repo.description.nil? || !repo.description == ""
-                .panel-body= repo.description
-            .panel-footer.panel-info= repo.languages
-  .row
-    .col-md-8.col-md-offset-2
-      %h1.section-header Language Stats
-      .well
-        %canvas#languages-doughnut
-        #languages-doughnut-legend
-  .row
-    .col-md-8.col-md-offset-2
-      %h1.section-header Commit Stats
-      .well
+.row
+  .col-md-6
+    .row
+      .col-md-12
+        .profile-header
+          .profile-portrait-wrapper
+            = image_tag @user.avatar_url, alt: "#{@user.username}",
+            class: "profile-portrait"
+          .profile-header-info
+            %h1= @user.full_name
+            .lead A short description about user. Here's a little more text to test spacing. What else can be said?
+    .row
+      .col-md-12
+        .profile-stats-summary.well.custom-well
+          %h3 
+            Githubber since
+            %strong= @user.gh_account_created
+          %h3
+            Total Repos: 
+            %strong= @user.repos.count
+          %h3
+            Languages Used: 
+            %strong= @user.languages.distinct.count
+          %h3
+            Commits This Year: 
+            %strong= @velocity.sum_for_year
+    .row
+      .col-md-12
+        .profile-header Language Stats
+    .row
+      .col-md-12
+        .well.custom-well
+          %canvas#languages-doughnut
+          #languages-doughnut-legend
+  .col-md-6
+    .row
+      .col-md-12
+        .profile-header
+          Featured Repos
+    .row
+      .col-md-12
+        .well.custom-well
+          - @repos.each do |repo|
+            .panel.panel-default
+              %a{href: "#{repo.html_url}"}
+                .panel-heading= repo.name
+                - if !repo.description.nil? || !repo.description == ""
+                  .panel-body= repo.description
+              .panel-footer.panel-info= repo.languages
+    .row
+      .col-md-8.col-md-offset-2
+        %h1.section-header Commit Stats
+        .well.custom-well
 
   / %canvas#languages-doughnut
 
