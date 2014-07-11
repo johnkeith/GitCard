@@ -18,14 +18,17 @@
 //   return randomColors;
 // }
 
+
 function buildLanguagesDoughnut(data){
   var languages = $.parseJSON(data);
   var langsCanvas = $("#languages-doughnut")[0].getContext("2d");
   var langsData = [];
-  var legendTemplate = "<ul class=\"languages-doughnut-legend-item\">";
+  var legendTemplate = "<div class=\"row\">";
   var randomColors = randomColor({
     count: Object.keys(languages).length,
-    luminosity: "dark"
+    luminosity: "dark", 
+    brightness: "bright",
+    hue: "red"
   });
 
   each_index = 0;
@@ -36,15 +39,47 @@ function buildLanguagesDoughnut(data){
       highlight: randomColors[each_index],
       label: language
     });
-    legendTemplate += ("<li style=\"background-color:" + randomColors[each_index] +
-      ";color:white;padding:15px\">" + language + ": " + percent + "%</li>");
+    legendTemplate += ("<div class=\"col-md-6\"><div style=\"border-left:6px solid " + randomColors[each_index] +
+      ";color: black;padding:15px;\" class=\"panel\">" + language + ": " + percent + "%</div></div>");
     each_index ++;
   });
 
   var langsOptions = {
     responsive: true,
-    legendTemplate: legendTemplate + "</ul>"
+    legendTemplate: legendTemplate + "</div>"
   };
   var languagesDoughnut = new Chart(langsCanvas).Doughnut(langsData, langsOptions);
   $("#languages-doughnut-legend").append(languagesDoughnut.generateLegend());
 }
+
+// function buildLanguagesDoughnut(data){
+//   var languages = $.parseJSON(data);
+//   var langsCanvas = $("#languages-doughnut")[0].getContext("2d");
+//   var langsData = [];
+//   var legendTemplate = "<ul class=\"languages-doughnut-legend-item\">";
+//   var randomColors = randomColor({
+//     count: Object.keys(languages).length,
+//     luminosity: "dark", 
+//     brightness: "bright"
+//   });
+
+//   each_index = 0;
+//   $.each(languages, function(language, percent){
+//     langsData.push({
+//       value: percent,
+//       color: randomColors[each_index],
+//       highlight: randomColors[each_index],
+//       label: language
+//     });
+//     legendTemplate += ("<li style=\"background-color:" + randomColors[each_index] +
+//       ";color:white;padding:15px\">" + language + ": " + percent + "%</li>");
+//     each_index ++;
+//   });
+
+//   var langsOptions = {
+//     responsive: true,
+//     legendTemplate: legendTemplate + "</ul>"
+//   };
+//   var languagesDoughnut = new Chart(langsCanvas).Doughnut(langsData, langsOptions);
+//   $("#languages-doughnut-legend").append(languagesDoughnut.generateLegend());
+// }

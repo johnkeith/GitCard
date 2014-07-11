@@ -68,6 +68,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -236,6 +238,7 @@ DEPENDENCIES
   coveralls
   dotenv-rails
   factory_girl_rails
+  font-awesome-rails
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
