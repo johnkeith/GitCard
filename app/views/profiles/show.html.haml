@@ -1,19 +1,51 @@
 #profile-page
-  = image_tag @user.avatar_url, alt: "#{@user.username}",
-    class: "profile-page-portrait"
-  %h1= @user.full_name
-  %h3 
-    Githubber since
-    = @user.gh_account_created
-  %h3
-    Total Repos: 
-    = @user.repos.count
-  %h3
-    Commits in Last Year: 
-    = @velocity.sum_for_year
-  %h3
-    Languages Used: 
-    = @user.languages.distinct.count
+  .row
+    .col-md-8.col-md-offset-2
+      .profile-header
+        .profile-portrait-wrapper
+          = image_tag @user.avatar_url, alt: "#{@user.username}",
+          class: "profile-portrait"
+        .profile-header-info
+          %h1= @user.full_name
+          .lead A short description about user. Here's a little more text to test spacing. What else can be said?
+  .row
+    .col-md-8.col-md-offset-2
+      .profile-stats-summary.well
+        %h3 
+          Githubber since
+          %strong= @user.gh_account_created
+        %h3
+          Total Repos: 
+          %strong= @user.repos.count
+        %h3
+          Languages Used: 
+          %strong= @user.languages.distinct.count
+        %h3
+          Commits This Year: 
+          %strong= @velocity.sum_for_year
+
+  .row
+    .col-md-8.col-md-offset-2
+      %h1.section-header Featured Repos
+      .well
+        - @repos.each do |repo|
+          .panel.panel-default
+            %a{href: "#{repo.html_url}"}
+              .panel-heading= repo.name
+              - if !repo.description.nil? || !repo.description == ""
+                .panel-body= repo.description
+            .panel-footer.panel-info= repo.languages
+  .row
+    .col-md-8.col-md-offset-2
+      %h1.section-header Language Stats
+      .well
+        %canvas#languages-doughnut
+        #languages-doughnut-legend
+  .row
+    .col-md-8.col-md-offset-2
+      %h1.section-header Commit Stats
+      .well
+
   / %canvas#languages-doughnut
 
   / #languages-doughnut-legend

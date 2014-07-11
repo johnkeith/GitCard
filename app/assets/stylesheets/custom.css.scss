@@ -1,14 +1,53 @@
+@import "bootstrap/variables";
+@mixin box-shadow-basic(){
+  -webkit-box-shadow: 0px 6px 4px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 6px 4px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 6px 4px 0px rgba(50, 50, 50, 0.75);
+}
+body {
+  font-family: "Lato", sans-serif;
+}
 .container-wrapper {
   max-width:960px;
   margin:0 auto;
 }
 .profile-header {
-  background: white;
-  padding:35px;
+  background: $brand-info;
+  color:#f8f8f8;
+  display:table;
+  padding:15px;
 }
 .profile-page-portrait {
   border:4px solid white;
 }
-.gc-header {
-
+.profile-stats-summary {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  padding: 0px 0px 25px 20px;
+  h3 {
+    border-bottom:1px solid #e3e3e3;
+    padding-bottom:4px;
+  }
 }
+
+.profile-portrait-wrapper {
+  display:table-cell;
+  vertical-align: middle;
+}
+.profile-header-info {
+  display:table-cell;
+  padding:0 0 0 10px;
+}
+.profile-portrait {
+  border-radius:50%;
+  border:4px solid white;
+  height:120px;
+  width:120px;
+}
+.well {
+  background-color: #f7f7f9;
+}
+.section-header {
+  color: #e3e3e3;
+}
+
