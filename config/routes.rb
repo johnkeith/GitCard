@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   resources :repos, only: [:edit, :update]
 
+  get '/auth/github', as: :create_account
   get '/auth/github/callback', to: 'sessions#create'
   get '/signout', to: 'sessions#destroy', as: :signout
 

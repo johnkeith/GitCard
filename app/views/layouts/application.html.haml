@@ -5,29 +5,29 @@
     %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no", name: "viewport"}
     = yield(:title)
     = stylesheet_link_tag :application, :media => 'all'
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600' rel='stylesheet' type='text/css'>
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    .container-wrapper
-      .container
-        / .row.row-offcanvas.row-offcanvas-right
-        /   .col-xs-12
-        /     .pull-right
-        /       .button{type: "button", class: "btn btn-primary", "data-toggle" => "offcanvas"} ShowMenu
-        /   .col-md-12.sidebar-offcanvas#sidebar{role: "navigation"}
-        /     %a{ href: "#", class: "" } Link
-        /     %a{ href: "#", class: "" } Link
-        /     %a{ href: "#", class: "" } Link
-        /     %a{ href: "#", class: "" } Link
-        /     %a{ href: "#", class: "" } Link
-        /     %a{ href: "#", class: "" } Link
-        /     %a{ href: "#", class: "" } Link
-      - if notice
-        %p= notice    
-      - if current_user 
-        = link_to "Sign out", signout_path
-      - else
-        = link_to "Sign in with Github", "/auth/github"
-      
+    - if current_user
+      .menu-frame
+        %btn.nav-btn{"data-role" => "none", class: "trigger"}
+          = fa_icon "cog 3x"
+      .nav-wrap
+        %ul.lead
+          %li
+            = link_to signout_path do
+              = fa_icon "sign-out"
+              Sign Out
+          %li
+            = link_to profile_path(current_user.username) do
+              = fa_icon "user"
+              Visit Profile
+          %li
+            = fa_icon "refresh" 
+            Refresh Profile
+          %li
+            = fa_icon "th-list"
+            Edit Profile
+    .container
       = yield
