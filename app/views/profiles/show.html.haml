@@ -1,69 +1,68 @@
-#profile-page
-.row
-  .col-md-6
-    .row
-      .col-md-12
-        .profile-header
-          .profile-portrait-wrapper
-            = image_tag @user.avatar_url, alt: "#{@user.username}",
-            class: "profile-portrait"
-          .profile-header-info
-            %h1= @user.full_name
-            .lead A short description about user. Here's a little more text to test spacing. What else can be said?
-    .row
-      .col-md-12
-        .profile-stats-summary.well.custom-well
-          %h3
-            = fa_icon "github"
-            Githubber since
-            %strong= Time.parse(@user.gh_account_created).strftime("%m-%Y")
-          %h3
-            = fa_icon "file-code-o"
-            Total Repos: 
-            %strong= @user.repos.count
-          %h3
-            = fa_icon "language"
-            Languages Used: 
-            %strong= @user.languages.distinct.count
-          %h3
-            = fa_icon "tasks"
-            Commits This Year: 
-            %strong= @velocity.sum_for_year
-    .row
-      .col-md-12
-        .profile-header Language Stats
-    .row
-      .col-md-12
-        .well.custom-well
-          %canvas#languages-doughnut
-          #languages-doughnut-legend
-  .col-md-6
-    .row
-      .col-md-12
-        .profile-header
-          Featured Repos
-    .row
-      .col-md-12
-        .well.custom-well
-          - @repos.each do |repo|
-            .panel.panel-default
-              %a{ href: repo.html_url }
-                .panel-heading.repo-name-link 
-                  %h1.panel-title
-                    = repo.name
-                    .pull-right= fa_icon "chevron-right"
-              - if !repo.description.nil? || !repo.description == ""
-                .panel-body= repo.description
-              .panel-footer.panel-info
-                %ul.list-inline 
-                  %li
-                    %strong Languages Used:
-                  - repo.languages.each do |lang|
-                    %li= lang.name
-    .row
-      .col-md-8.col-md-offset-2
-        %h1.section-header Commit Stats
-        .well.custom-well
+#hidden-wrapper
+  .row
+    .col-md-6
+      .row
+        .col-md-12
+          .card-header
+            .card-portrait
+              = image_tag @user.avatar_url, alt: "#{@user.username}",
+              class: "profile-portrait"
+            .card-header-info
+              %h1= @user.full_name
+              .lead A short description about user. Here's a little more text to test spacing. What else can be said?
+      .row
+        .col-md-12
+          .profile-stats-summary.well.custom-well
+            %h3
+              = fa_icon "github"
+              Githubber since
+              %strong= Time.parse(@user.gh_account_created).strftime("%m-%Y")
+            %h3
+              = fa_icon "file-code-o"
+              Total Repos: 
+              %strong= @user.repos.count
+            %h3
+              = fa_icon "language"
+              Languages Used: 
+              %strong= @user.languages.distinct.count
+            %h3
+              = fa_icon "tasks"
+              Commits This Year: 
+              %strong= @velocity.sum_for_year
+      .row
+        .col-md-12
+          .card-header.card-header-lg Language Stats
+      .row
+        .col-md-12
+          .well.custom-well
+            %canvas#languages-doughnut
+            #languages-doughnut-legend
+    .col-md-6
+      .row
+        .col-md-12
+          .card-header.card-header-lg Featured Repos
+      .row
+        .col-md-12
+          .well.custom-well
+            - @repos.each do |repo|
+              .panel.panel-default.custom-panel
+                %a{ href: repo.html_url }
+                  .panel-heading.repo-name-link 
+                    %h1.panel-title
+                      = repo.name
+                      .pull-right= fa_icon "chevron-right"
+                - if !repo.description.nil? || !repo.description == ""
+                  .panel-body= repo.description
+                .panel-footer.panel-info
+                  %ul.list-inline 
+                    %li
+                      %strong Languages Used:
+                    - repo.languages.each do |lang|
+                      %li= lang.name
+      / .row
+      /   .col-md-8.col-md-offset-2
+      /     %h1.section-header Commit Stats
+      /     .well.custom-well
 :javascript
   $(function(){
     buildLanguagesDoughnut('#{ j @languages_percents.to_json }');

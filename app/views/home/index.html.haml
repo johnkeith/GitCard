@@ -1,1 +1,26 @@
-%p Home page
+.row
+  .col-md-8.col-md-offset-2
+    .home-wrapper
+      .row
+        .col-md-12
+          .card-landing-page
+            .card-header
+              .card-portrait
+                .fake-portrait
+                  = fa_icon "user 5x"
+              .card-header-info
+                %h1 Welcome to GitCard
+                .lead 
+                  Show off your
+                  %strong best work on Github.
+                  Sign in below to create a customizable Github profile.
+      .row
+        .col-md-12
+          .well.custom-well
+            = button_to create_account_path, {class: "btn btn-success btn-lg"} do
+              = fa_icon "github"
+              Sign in with Github
+
+            / %button.btn.btn-success.btn-lg 
+            /   = fa_icon "github"
+            /   Sign in with Github
