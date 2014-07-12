@@ -27,8 +27,7 @@ function buildLanguagesDoughnut(data){
   var randomColors = randomColor({
     count: Object.keys(languages).length,
     luminosity: "dark", 
-    brightness: "bright",
-    hue: "red"
+    brightness: "bright"
   });
 
   each_index = 0;

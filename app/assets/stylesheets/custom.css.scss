@@ -1,8 +1,8 @@
 @import "bootstrap/variables";
 @mixin box-shadow-basic(){
-  -webkit-box-shadow: 0px 6px 4px 0px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow:    0px 6px 4px 0px rgba(50, 50, 50, 0.75);
-  box-shadow:         0px 6px 4px 0px rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.25);
+  box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.25);
 }
 
 body {
@@ -16,11 +16,15 @@ a:hover {
   margin:0 auto;
 }
 .profile-header {
+  @include box-shadow-basic;
   background: $brand-info;
   color:#fff;
   display:table;
   padding:15px;
   width:100%;
+}
+.profile-header-lg {
+  font-size:140%;
 }
 .profile-page-portrait {
   border:4px solid white;
@@ -48,10 +52,15 @@ a:hover {
   width:120px;
 }
 .custom-well {
+  @include box-shadow-basic;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-  background-color: #f7f7f9;
+  background-color: #ECF0F1;
   // background-color: white;
+  .panel-heading, .panel-footer {
+    background-color: white;
+    border-top:0px;
+  }
 }
 .section-header {
   color: #e3e3e3;
@@ -63,6 +72,10 @@ a:hover {
 .panel-footer ul {
   margin-bottom: 0px;
 }
+.custom-panel {
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.05);
+  border:4px solid #ddd;
+}
 .repo-name-link:hover {
   background-color: $brand-info;
   color: white;
@@ -70,7 +83,7 @@ a:hover {
 }
 .repo-name-link {
   background-color: whitesmoke;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 4px solid #dddddd;
 }// .panel-footer ul li {
 //   border-right:2px solid black;
 // }
