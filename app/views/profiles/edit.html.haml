@@ -1,11 +1,11 @@
-%p This is the edit profile page
-%p 
+%p.lead 
   Thanks for signing up for GitCard! Please click on the checkboxes next to the
   repos you want to display on your profile page.
 - @repos.each do |repo|
   = simple_form_for repo, remote: true, format: :json, html: { class: "repo-visibility" } do |f|
-    = f.label repo.name
-    = f.input :profile_visibility, label: "", as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle", "data-repo-name" => "#{repo.name}" }
+    / = f.label repo.name
+    = f.input :profile_visibility, label: repo.name, label_html: { class: "lead" },   as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle", "data-repo-name" => "#{repo.name}" }, wrapper: :inline_checkbox
+  
   / = simple_form_for repo, remote: true, format: :json,
   /   html: { class: "repo_visibility" } do |f|
   /   = f.hidden_field :profile_visibility,

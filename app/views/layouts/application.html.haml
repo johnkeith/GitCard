@@ -27,7 +27,8 @@
             = fa_icon "refresh" 
             Refresh Profile
           %li
-            = fa_icon "th-list"
-            Edit Profile
+            = link_to edit_profile_path(current_user.username) do
+              = fa_icon "th-list"
+              Edit Profile
     .container
       = yield
