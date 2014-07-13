@@ -56,7 +56,9 @@ function buildLanguagesDoughnut(data){
     segmentStrokeWidth: 3
   };
   var languagesDoughnut = new Chart(langsCanvas).Doughnut(langsData, langsOptions);
-  $("#languages-doughnut-legend").append(languagesDoughnut.generateLegend());
+  if( $('#languages-doughnut-legend:empty').length ) {
+    $("#languages-doughnut-legend").append(languagesDoughnut.generateLegend());
+  }
 }
 
 function buildCommitPlot(data) {

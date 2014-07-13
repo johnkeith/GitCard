@@ -15,6 +15,7 @@ gem 'omniauth-github'
 gem 'octokit'
 gem 'simple_form'
 gem "font-awesome-rails"
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'dotenv-rails'
