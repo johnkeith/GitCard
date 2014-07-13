@@ -18,6 +18,35 @@
   -webkit-transform: $transforms;
           transform: $transforms;
 }
+@mixin box-sizing($box-sizing) {
+  -moz-box-sizing: $box-sizing;
+  box-sizing: $box-sizing;
+}
+@mixin position ($position: relative, $coords1: null, $coords2: null, $coords3: null, $coords4: null) {
+
+  $top: $coords1;
+  $right: $coords2;
+  $bottom: $coords3;
+  $left: $coords4;
+
+  position: $position;
+
+  @if ($top and $top == auto) or (type-of($top) == number) {
+    top: $top;
+  }
+
+  @if ($right and $right == auto) or (type-of($right) == number) {
+    right: $right;
+  }
+
+  @if ($bottom and $bottom == auto) or (type-of($bottom) == number) {
+    bottom: $bottom;
+  }
+
+  @if ($left and $left == auto) or (type-of($left) == number) {
+    left: $left;
+  }
+}
 
 body {
   @include transition(all, 0.5s, ease);
@@ -210,7 +239,7 @@ a:hover {
     width: $switch-width;
     z-index: 0;
     @include box-sizing(border-box);
-    @include transition(all 0.3s ease);
+    @include transition(all, 0.3s, ease);
 
     &:before {
       background: white;
@@ -220,8 +249,8 @@ a:hover {
       width: $switch-width - ($switch-padding * 2);
       z-index: 1;
       @include box-sizing(border-box);
-      @include position(absolute, 2px 0 0 2px);
-      @include transition(all 0.3s ease);
+      @include position(absolute, 2px, 0, 0, 2px);
+      @include transition(all, 0.3s, ease);
       @include transform(scale(1));
     }
 
@@ -233,14 +262,14 @@ a:hover {
       width: $knob-width;
       z-index: 2;
       box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-      @include position(absolute, 2px 0 0 2px);
-      @include transition(all 0.3s ease);
+      @include position(absolute, 2px, 0, 0, 2px);
+      @include transition(all, 0.3s, ease);
     }
   }
 
   &:checked {
     + .checkbox {
-      background: $blue;
+      background: $brand-info;
         
         &:before {
           @include transform(scale(0));
