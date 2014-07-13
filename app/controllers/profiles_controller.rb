@@ -1,11 +1,11 @@
 class ProfilesController < ApplicationController
   def edit
     ok_client = OctokitConnector.create(current_user)
-    if !current_user.profile_created
-      Repo.new_user_repos(ok_client, current_user)
-    else
-      Repo.refresh_user_repos(ok_client, current_user)
-    end
+    # if !current_user.profile_created
+    #   Repo.new_user_repos(ok_client, current_user)
+    # else
+    #   Repo.refresh_user_repos(ok_client, current_user)
+    # end
     @repos = current_user.repos.order(:name)
   end
   
