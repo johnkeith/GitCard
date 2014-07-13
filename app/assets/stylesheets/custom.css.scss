@@ -11,6 +11,13 @@
     -o-transition: $transition-property $transition-time $method;
     transition: $transition-property $transition-time $method;
 }
+@mixin transform($transforms) {
+     -moz-transform: $transforms;
+       -o-transform: $transforms;
+      -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+          transform: $transforms;
+}
 
 body {
   @include transition(all, 0.5s, ease);
@@ -127,6 +134,10 @@ a:hover {
   color: $brand-primary;
   z-index: 1000;
 }
+.nav-btn:hover {
+  @include transition(all, 1s, ease);
+  @include transform(rotate(180deg));
+}
 .nav-wrap {
   @include transition(all, 0.5s, ease);
   position: fixed;
@@ -141,6 +152,10 @@ a:hover {
   ul {
     padding-left:20px;
     list-style: none;
+    li {
+      border-bottom:1px solid #e3e3e3;
+      padding-bottom:4px;
+    }
   }
 }
 .body-left {

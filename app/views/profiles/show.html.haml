@@ -52,7 +52,8 @@
                       = repo.name
                       .pull-right= fa_icon "chevron-right"
                 - if !repo.description.nil? || !repo.description == ""
-                  .panel-body= repo.description
+                  .panel-body
+                    = repo.description
                 .panel-footer.panel-info
                   %ul.list-inline 
                     %li
