@@ -51,7 +51,8 @@
 
 body {
   @include transition(all, 0.5s, ease);
-  font-family: "Open Sans", sans-serif;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
 }
 a:hover {
   text-decoration: none;

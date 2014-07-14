@@ -61,9 +61,10 @@ $(function () {
     $(".nav-btn").find("i").addClass("fa-spin");
   });
   $("a.refresh-profile-btn").on("ajax:complete", function(e, data, textStatus, jqXHR) {
-    console.log("Update successful!");
-    $(this).find("i").removeClass("fa-spin");
-    $(".nav-btn").find("i").removeClass("fa-spin");
+    location.reload(true);
+    // console.log("Update successful!");
+    // $(this).find("i").removeClass("fa-spin");
+    // $(".nav-btn").find("i").removeClass("fa-spin");
   });
 
 

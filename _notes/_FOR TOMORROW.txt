@@ -1,0 +1,7 @@
+-FOR TOMORROW
+
+add edit description to edit profile page
+how to interuppt ajax call
+fix tests
+add edit for repo desciptions - use modal and ajax
+add social links

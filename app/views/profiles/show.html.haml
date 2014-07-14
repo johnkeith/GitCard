@@ -46,7 +46,7 @@
           .well.custom-well
             - @repos.each do |repo|
               .panel.panel-default.custom-panel
-                %a{ href: repo.html_url }
+                %a{ href: repo.html_url, target: "_blank" }
                   .panel-heading.repo-name-link 
                     %h1.panel-title
                       = repo.name
