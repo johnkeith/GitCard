@@ -37,5 +37,6 @@ group :test do
   gem 'rack_session_access'
   gem 'valid_attribute'
   gem 'shoulda-matchers'
+  gem 'poltergeist'
 end
 

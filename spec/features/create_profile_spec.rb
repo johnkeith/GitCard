@@ -19,7 +19,7 @@ feature "signed up user customizes profile", %q(
     end
 
     expect(page).to have_content("Ruby2048") 
-    expect(page).to have_content("Carman")
+    expect(page).to have_content("CarMan")
   end
 
   scenario "user chooses repos to display" do
@@ -30,13 +30,9 @@ feature "signed up user customizes profile", %q(
     VCR.use_cassette('github_repos_request') do 
       visit edit_profile_path(user.username)
     end
-    save_and_open_page
+
     expect(page).to have_css('input[data-repo-name="HubMe"]')
     expect(page).to have_css('input[data-repo-name="wallofbeer"]')
-
-    expect(page).to have_content("Remember, you can always change the repos
-      displayed on your profile by clicking the settings wheel in the top
-      right.")
   end
 
 end

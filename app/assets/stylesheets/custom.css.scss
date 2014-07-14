@@ -232,6 +232,25 @@ a:hover {
 .slow-tran {
   @include transition(all, 2s, ease);
 }
+
+.long-loader {
+  height:100%;
+  display: table;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index:10000;
+  .loader-spinner {
+    color:white;
+    display:table-cell;
+    text-align: center;
+    vertical-align: middle;
+    z-index:10005;
+  }
+}
+
 [type="checkbox"] {
   width: 30px;
   height: 30px;
