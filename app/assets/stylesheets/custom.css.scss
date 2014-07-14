@@ -134,6 +134,9 @@ a:hover {
 .custom-panel {
   box-shadow: 0 2px 0px rgba(0, 0, 0, 0.05);
   border:3px solid #ddd;
+  .edit-repos-panel {
+    padding-left:25px;
+  }
 }
 .repo-name-link:hover {
   background-color: $brand-info;
@@ -206,9 +209,11 @@ a:hover {
   @include box-shadow-basic;
 }
 .refresh-profile-btn {
-  
-}
 
+}
+.card-header-offset {
+  margin-top:-20px;
+}
 
 [type="checkbox"] {
   width: 30px;

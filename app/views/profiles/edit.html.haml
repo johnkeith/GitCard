@@ -1,19 +1,26 @@
-%p.lead 
-  Thanks for signing up for GitCard! Please click on the checkboxes next to the
-  repos you want to display on your profile page.
-- @repos.each do |repo|
-  = simple_form_for repo, remote: true, format: :json, html: { class: "repo-visibility" } do |f|
-    / = f.label repo.name
-    = f.input :profile_visibility, label: repo.name, label_html: { class: "lead" },   as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle", "data-repo-name" => "#{repo.name}" }, wrapper: :inline_checkbox
-  
-  / = simple_form_for repo, remote: true, format: :json,
-  /   html: { class: "repo_visibility" } do |f|
-  /   = f.hidden_field :profile_visibility,
-  /     value: (repo.profile_visibility ? 'f' : 't')
-  /   = f.submit repo.profile_visibility ? "Visible" : "Hidden"
+.row
+  .col-md-8.col-md-offset-2
+    .home-wrapper
+      .row
+        .col-md-12
+          .card-landing-page
+            .card-header.card-header-offset
+              %h1 Edit Profile
+      .row
+        .col-md-12
+          .well.custom-well
+            %p
+              Please click on the checkboxes next to the repos you want to display on your profile page.
+            .panel.custom-panel
+              .edit-repos-panel
+                - @repos.each do |repo|
+                  = simple_form_for repo, remote: true, format: :json, html: { class: "repo-visibility" } do |f|
+                    / = f.label repo.name
+                    = f.input :profile_visibility, label: repo.name, label_html: { class: "lead" },   as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle", "data-repo-name" => "#{repo.name}" }, wrapper: :inline_checkbox
 
-%p 
-  Remember, you can always change the repos displayed on your profile by
-  clicking the settings wheel in the top right.
+            %p 
+              You can always change the repos displayed on your profile by
+              clicking the settings wheel in the top left.
 
-= link_to "Go to profile page", profile_path(current_user.username)
+            = button_to profile_path(current_user.username), method: :get, class: "btn btn-primary btn-lg" do
+              Go to profile page
