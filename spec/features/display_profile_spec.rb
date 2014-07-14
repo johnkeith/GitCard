@@ -15,7 +15,7 @@ feature "", %q(
   scenario "user views repos on profile" do
     user = FactoryGirl.create(:user, profile_created: true)
     repos = FactoryGirl.create_list(:repo, 3, user: user, profile_visibility: true)
-    binding.pry
+
     VCR.use_cassette('github_calendar_data_request') do
       visit "/#{user.username}"
     end

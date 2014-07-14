@@ -14,16 +14,16 @@
                 = @user.description
                 %br
                 .social-links
-                  - if !@user.personal_site_url.nil? || !@user.personal_site_url == ""
+                  - if !@user.personal_site_url.nil? && !@user.personal_site_url.empty?
                     %a{ href: @user.personal_site_url }
                       = fa_icon "home"
-                  - if !@user.facebook_url.nil? || !@user.facebook_url == ""
+                  - if !@user.facebook_url.nil? && !@user.facebook_url.empty?
                     %a{ href: @user.facebook_url }
                       = fa_icon "facebook-square"
-                  - if !@user.twitter_url.nil? || !@user.twitter_url == ""
+                  - if !@user.twitter_url.nil? && !@user.twitter_url.empty?
                     %a{ href: @user.twitter_url }
                       = fa_icon "twitter-square"
-                  - if !@user.linkedin_url.nil? || !@user.linkedin_url == ""
+                  - if !@user.linkedin_url.nil? && !@user.linkedin_url.empty?
                     %a{ href: @user.linkedin_url }
                       = fa_icon "linkedin-square"
       .row
