@@ -18,10 +18,6 @@ feature "signed up user customizes profile", %q(
       visit edit_profile_path(user.username)
     end
 
-    expect(page).to have_content("Thanks for signing up for GitCard! Please
-      click on the checkboxes next to the repos you want to display on your
-      profile page.")
-
     expect(page).to have_content("Ruby2048") 
     expect(page).to have_content("Carman")
   end
@@ -34,7 +30,7 @@ feature "signed up user customizes profile", %q(
     VCR.use_cassette('github_repos_request') do 
       visit edit_profile_path(user.username)
     end
-
+    save_and_open_page
     expect(page).to have_css('input[data-repo-name="HubMe"]')
     expect(page).to have_css('input[data-repo-name="wallofbeer"]')
 

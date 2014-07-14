@@ -7,7 +7,8 @@ module LoginHelper
       username: user.username,
       avatar_url: user.avatar_url,  
       email: user.email,
-      access_token: user.access_token
+      access_token: user.access_token,
+      gh_account_created: user.gh_account_created
     }
     OmniAuth.config.add_mock(:github, auth_hash)
   end
