@@ -56,15 +56,28 @@ function buildCommitPlot(data) {
 
 $(function () {
   $("#hidden-wrapper").fadeIn(800, "linear");
+  
   $("a.refresh-profile-btn").on("ajax:beforeSend", function(e, data, textStatus, jqXHR) {
     $(this).find("i").addClass("fa-spin");
     $(".nav-btn").find("i").addClass("fa-spin");
+    $(".nav-btn").append("<p>Working...</p>");
   });
   $("a.refresh-profile-btn").on("ajax:complete", function(e, data, textStatus, jqXHR) {
     location.reload(true);
     // console.log("Update successful!");
     // $(this).find("i").removeClass("fa-spin");
     // $(".nav-btn").find("i").removeClass("fa-spin");
+  });
+
+  $(".edit_user").on("ajax:beforeSend", function(e, data, textStatus, jqXHR) {
+    $(".nav-btn").find("i").addClass("fa-spin");
+    $(".nav-btn").append("<p>Working...</p>");
+  });
+  $(".edit_user").on("ajax:complete", function(e, data, textStatus, jqXHR) {
+    setTimeout(function(){
+      $(".nav-btn").find("i").removeClass("fa-spin");
+      $(".nav-btn").find("p").remove();
+    }, 1000);
   });
 
 

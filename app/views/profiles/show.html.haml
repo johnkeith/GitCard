@@ -9,13 +9,28 @@
               class: "profile-portrait"
             .card-header-info
               %h1= @user.full_name
-              .lead A short description about user. Here's a little more text to test spacing. What else can be said?
+              .lead
+                = @user.description
+                %br
+                .social-links
+                  - if @user.personal_site_url
+                    %a{ href: @user.personal_site_url }
+                      = fa_icon "home"
+                  - if @user.facebook_url
+                    %a{ href: @user.facebook_url }
+                      = fa_icon "facebook-square"
+                  - if @user.twitter_url
+                    %a{ href: @user.twitter_url }
+                      = fa_icon "twitter-square"
+                  - if @user.linkedin_url
+                    %a{ href: @user.linkedin_url }
+                      = fa_icon "linkedin-square"
       .row
         .col-md-12
           .profile-stats-summary.well.custom-well
             %h3
               = fa_icon "github"
-              Githubber since
+              Github user since
               %strong= Time.parse(@user.gh_account_created).strftime("%m-%Y")
             %h3
               = fa_icon "file-code-o"
@@ -29,6 +44,21 @@
               = fa_icon "tasks"
               Commits This Year: 
               %strong= @velocity.sum_for_year
+            / %h3.social-links
+            /   Social Links  
+            /   - if @user.personal_site_url
+            /     %a{ href: @user.personal_site_url }
+            /       = fa_icon "home"
+            /   - if @user.facebook_url
+            /     %a{ href: @user.facebook_url }
+            /       = fa_icon "facebook-square"
+            /   - if @user.twitter_url
+            /     %a{ href: @user.twitter_url }
+            /       = fa_icon "twitter-square"
+            /   - if @user.linkedin_url
+            /     %a{ href: @user.linkedin_url }
+            /       = fa_icon "linkedin-square"
+
       .row
         .col-md-12
           .card-header.card-header-lg Language Stats

@@ -86,6 +86,7 @@ a:hover {
 .card-portrait {
   display:table-cell;
   vertical-align: middle;
+  text-align:center;
 }
 
 .card-header-info {
@@ -97,6 +98,18 @@ a:hover {
   border:4px solid white;
   height:120px;
   width:120px;
+}
+.social-links {
+  margin-top:15px;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: $link-hover-color;
+  }
+  i {
+    padding-right:10px;
+  }
 }
 .fake-portrait {
   background:$brand-primary;
@@ -135,8 +148,8 @@ a:hover {
 .custom-panel {
   box-shadow: 0 2px 0px rgba(0, 0, 0, 0.05);
   border:3px solid #ddd;
-  .edit-repos-panel {
-    padding-left:25px;
+  .form-inner {
+    padding:25px;
   }
 }
 .repo-name-link:hover {
@@ -216,6 +229,9 @@ a:hover {
   margin-top:-20px;
 }
 
+.slow-tran {
+  @include transition(all, 2s, ease);
+}
 [type="checkbox"] {
   width: 30px;
   height: 30px;
