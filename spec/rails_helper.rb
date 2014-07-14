@@ -4,6 +4,13 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'shoulda/matchers'
+require 'capybara/poltergeist'
+
+# Capybara.register_driver :poltergeist_debug do |app|
+#   Capybara::Poltergeist::Driver.new(app, :js_errors => false)
+# end
+
+Capybara.javascript_driver = :poltergeist
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 

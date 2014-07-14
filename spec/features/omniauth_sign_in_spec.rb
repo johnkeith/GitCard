@@ -1,5 +1,5 @@
 require_relative '../rails_helper'
-
+WebMock.allow_net_connect!
 feature "user authorizes with github and creates account", %q(
   As a user, I want to be able to sign in with my Github account, 
   so that I can customize my profile on the site.
@@ -19,9 +19,10 @@ feature "user authorizes with github and creates account", %q(
 
     visit '/'
 
-    click_on 'Sign in with Github'
-
+    VCR.turned_off do
+      click_on 'Sign in with Github'
+    end
     expect(page).to_not have_content 'Sign in with Github'
-    expect(page).to have_content 'Sign out'
+    expect(page).to have_content 'Sign Out'
   end
 end

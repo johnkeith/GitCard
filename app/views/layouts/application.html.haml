@@ -3,9 +3,10 @@
   %head
     %meta{charset: "utf-8"}
     %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no", name: "viewport"}
-    = yield(:title)
+    %title= "GitCard | " + yield(:title)
     = stylesheet_link_tag :application, :media => 'all'
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
@@ -24,10 +25,12 @@
               = fa_icon "user"
               Visit Profile
           %li
-            = fa_icon "refresh" 
-            Refresh Profile
+            = link_to refresh_profile_path, remote: true, class: "refresh-profile-btn" do
+              = fa_icon "refresh" 
+              Refresh Profile
           %li
-            = fa_icon "th-list"
-            Edit Profile
+            = link_to edit_profile_path(current_user.username), class: "edit-profile-btn" do
+              = fa_icon "th-list"
+              Edit Profile
     .container
       = yield

@@ -6,7 +6,8 @@ class ProfilesController < ApplicationController
     else
       Repo.refresh_user_repos(ok_client, current_user)
     end
-    @repos = current_user.repos.order(:name)
+    @user = current_user
+    @repos = @user.repos.order(:name)
   end
   
   def show
@@ -25,5 +26,14 @@ class ProfilesController < ApplicationController
     @repos = @user.repos.where(profile_visibility: true)
 
     @velocity = VelocityCalculator.new(@user)
+  end
+
+  def refresh
+    ok_client = OctokitConnector.create(current_user)
+    respond_to do |format|
+      if Repo.refresh_user_repos(ok_client, current_user)
+        format.json { render nothing: true }
+      end
+    end    
   end
 end
