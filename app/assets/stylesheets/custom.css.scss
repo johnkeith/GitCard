@@ -180,9 +180,10 @@ a:hover {
   position: fixed;
   left:0;
   top:0;
-  padding:10px 20px 10px 20px;
+  padding:10px 10px 10px 10px;
   color: $brand-primary;
   z-index: 1000;
+
 }
 .nav-btn:hover {
   color: $link-hover-color;
@@ -258,6 +259,6 @@ a:hover {
 
 @media (min-width: 1200px) {
   .container {
-    width: 1440px;
+    width: 1300px;
   }
 }
