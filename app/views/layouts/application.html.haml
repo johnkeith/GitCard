@@ -24,8 +24,9 @@
               = fa_icon "user"
               Visit Profile
           %li
-            = fa_icon "refresh" 
-            Refresh Profile
+            = link_to refresh_profile_path, remote: true, class: "refresh-profile-btn" do
+              = fa_icon "refresh" 
+              Refresh Profile
           %li
             = link_to edit_profile_path(current_user.username) do
               = fa_icon "th-list"
