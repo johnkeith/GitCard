@@ -1,6 +1,6 @@
 = provide :title, "Edit Profile"
 .row
-  .col-md-8.col-md-offset-2
+  .col-md-12
     .home-wrapper
       .row
         .col-md-12
@@ -10,25 +10,28 @@
       .row
         .col-md-12
           .well.custom-well
-            .panel.custom-panel
-              .form-inner
-                %p
-                  Enter a short description of yourself and the social links you would like displayed on your profile page.
-                = simple_form_for @user, remote: true, format: :json,  wrapper_html: { class: "form-group" } do |f|
-                  = f.input :description, label: "Short description of yourself", input_html: { class: "form-control" } 
-                  = f.input :github_url, label: "Github", input_html: { class: "form-control" } 
-                  = f.input :twitter_url, label: "Twitter", input_html: { class: "form-control" } 
-                  = f.input :facebook_url, label: "Facebook", input_html: { class: "form-control" } 
-                  = f.input :linkedin_url, label: "Linkedin", input_html: { class: "form-control" } 
-                  = f.input :personal_site_url, label: "Personal Website",input_html: { class: "form-control" }
-                  = f.button :submit, "Update personal information", class: "btn-info btn-lg update-personal-info" 
-            .panel.custom-panel
-              .form-inner
-                %p
-                  Please click on the checkboxes next to the repos you want to display on your profile page.
-                - @repos.each do |repo|
-                  = simple_form_for repo, remote: true, format: :json, html: { class: "repo-visibility" } do |f|
-                    / = f.label repo.name
-                    = f.input :profile_visibility, label: repo.name, label_html: { class: "lead" },   as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle", "data-repo-name" => "#{repo.name}" }, wrapper: :inline_checkbox
-            = button_to profile_path(current_user.username), method: :get, class: "btn btn-primary btn-lg" do
-              Go to profile page
+            .row
+              .col-md-6
+                .panel.custom-panel
+                  .form-inner
+                    %p
+                      Enter a short description of yourself and the social links you would like displayed on your profile page.
+                    = simple_form_for @user, remote: true, format: :json,  wrapper_html: { class: "form-group" } do |f|
+                      = f.input :description, label: "Short description of yourself", input_html: { class: "form-control" } 
+                      = f.input :github_url, label: "Github", input_html: { class: "form-control" } 
+                      = f.input :twitter_url, label: "Twitter", input_html: { class: "form-control" } 
+                      = f.input :facebook_url, label: "Facebook", input_html: { class: "form-control" } 
+                      = f.input :linkedin_url, label: "Linkedin", input_html: { class: "form-control" } 
+                      = f.input :personal_site_url, label: "Personal Website",input_html: { class: "form-control" }
+                      = f.button :submit, "Update personal information", class: "btn-info btn-lg update-personal-info" 
+              .col-md-6
+                .panel.custom-panel
+                  .form-inner
+                    %p
+                      Please click on the checkboxes next to the repos you want to display on your profile page.
+                    - @repos.each do |repo|
+                      = simple_form_for repo, remote: true, format: :json, html: { class: "repo-visibility" } do |f|
+                        / = f.label repo.name
+                        = f.input :profile_visibility, label: repo.name, label_html: { class: "lead" },   as: :boolean, checked_value: true, unchecked_value: false, input_html: { class: "repo-visibility-toggle", "data-repo-name" => "#{repo.name}" }, wrapper: :inline_checkbox
+                = button_to profile_path(current_user.username), method: :get, class: "btn btn-primary btn-lg" do
+                  Go to profile page
