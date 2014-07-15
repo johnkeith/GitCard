@@ -37,7 +37,7 @@ group :test do
   gem 'rack_session_access'
   gem 'valid_attribute'
   gem 'shoulda-matchers'
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
 end
 
 group :production do

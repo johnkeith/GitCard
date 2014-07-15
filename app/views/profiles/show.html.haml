@@ -1,50 +1,51 @@
 = provide :title, "#{@user.full_name}"
 #hidden-wrapper
   .row
-    .col-md-6
+    .col-lg-6.col-md-6
       .row
-        .col-md-12
-          .card-header
+        .card-header
+          .col-md-4.text-center
             .card-portrait
               = image_tag @user.avatar_url, alt: "#{@user.username}",
-              class: "profile-portrait"
+                class: "profile-portrait"
+          .col-md-8
+            %h1= @user.full_name
+          .col-md-12
             .card-header-info
-              %h1= @user.full_name
               .lead
                 = @user.description
                 %br
                 .social-links
                   - if !@user.personal_site_url.nil? && !@user.personal_site_url.empty?
-                    %a{ href: @user.personal_site_url }
+                    %a{ href: @user.personal_site_url, target: "_blank" }
                       = fa_icon "home"
                   - if !@user.facebook_url.nil? && !@user.facebook_url.empty?
-                    %a{ href: @user.facebook_url }
+                    %a{ href: @user.facebook_url, target: "_blank" }
                       = fa_icon "facebook-square"
                   - if !@user.twitter_url.nil? && !@user.twitter_url.empty?
-                    %a{ href: @user.twitter_url }
+                    %a{ href: @user.twitter_url, target: "_blank" }
                       = fa_icon "twitter-square"
                   - if !@user.linkedin_url.nil? && !@user.linkedin_url.empty?
-                    %a{ href: @user.linkedin_url }
+                    %a{ href: @user.linkedin_url, target: "_blank" }
                       = fa_icon "linkedin-square"
       .row
-        .col-md-12
-          .profile-stats-summary.well.custom-well
-            %h3
-              = fa_icon "github"
-              Github user since
-              %strong= Time.parse(@user.gh_account_created).strftime("%m-%Y")
-            %h3
-              = fa_icon "file-code-o"
-              Total Repos: 
-              %strong= @user.repos.count
-            %h3
-              = fa_icon "language"
-              Languages Used: 
-              %strong= @user.languages.distinct.count
-            %h3
-              = fa_icon "tasks"
-              Commits This Year: 
-              %strong= @velocity.sum_for_year
+        .profile-stats-summary.well.custom-well
+          %h3
+            = fa_icon "github"
+            Github user since
+            %strong= Time.parse(@user.gh_account_created).strftime("%m-%Y")
+          %h3
+            = fa_icon "file-code-o"
+            Total Repos: 
+            %strong= @user.repos.count
+          %h3
+            = fa_icon "language"
+            Languages Used: 
+            %strong= @user.languages.distinct.count
+          %h3
+            = fa_icon "tasks"
+            Commits This Year: 
+            %strong= @velocity.sum_for_year
             / %h3.social-links
             /   Social Links  
             /   - if @user.personal_site_url
@@ -61,36 +62,32 @@
             /       = fa_icon "linkedin-square"
 
       .row
-        .col-md-12
-          .card-header.card-header-lg Language Stats
+        .card-header.card-header-lg Language Stats
       .row
-        .col-md-12
-          .well.custom-well
-            %canvas#languages-doughnut
-            #languages-doughnut-legend
-    .col-md-6
+        .well.custom-well
+          %canvas#languages-doughnut
+          #languages-doughnut-legend
+    .col-lg-6.col-md-6
       .row
-        .col-md-12
-          .card-header.card-header-lg Featured Repos
+        .card-header.card-header-lg Featured Repos
       .row
-        .col-md-12
-          .well.custom-well
-            - @repos.each do |repo|
-              .panel.panel-default.custom-panel
-                %a{ href: repo.html_url, target: "_blank" }
-                  .panel-heading.repo-name-link 
-                    %h1.panel-title
-                      = repo.name
-                      .pull-right= fa_icon "chevron-right"
-                - if !repo.description.nil? || !repo.description == ""
-                  .panel-body
-                    = repo.description
-                .panel-footer.panel-info
-                  %ul.list-inline 
-                    %li
-                      %strong Languages Used:
-                    - repo.languages.each do |lang|
-                      %li= lang.name
+        .well.custom-well
+          - @repos.each do |repo|
+            .panel.panel-default.custom-panel
+              %a{ href: repo.html_url, target: "_blank" }
+                .panel-heading.repo-name-link 
+                  %h1.panel-title
+                    = repo.name
+                    .pull-right= fa_icon "chevron-right"
+              - if !repo.description.nil? || !repo.description == ""
+                .panel-body
+                  = repo.description
+              .panel-footer.panel-info
+                %ul.list-inline 
+                  %li
+                    %strong Languages Used:
+                  - repo.languages.each do |lang|
+                    %li= lang.name
       / .row
       /   .col-md-8.col-md-offset-2
       /     %h1.section-header Commit Stats

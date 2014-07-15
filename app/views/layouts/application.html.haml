@@ -5,32 +5,31 @@
     %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no", name: "viewport"}
     %title= "GitCard | " + yield(:title)
     = stylesheet_link_tag :application, :media => 'all'
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    - if current_user
-      .menu-frame
-        %btn.nav-btn{"data-role" => "none", class: "trigger"}
-          = fa_icon "cog 3x"
-      .nav-wrap
-        %ul.lead
-          %li
-            = link_to signout_path do
-              = fa_icon "sign-out"
-              Sign Out
-          %li
-            = link_to profile_path(current_user.username) do
-              = fa_icon "user"
-              Visit Profile
-          %li
-            = link_to refresh_profile_path, remote: true, class: "refresh-profile-btn" do
-              = fa_icon "refresh" 
-              Refresh Profile
-          %li
-            = link_to edit_profile_path(current_user.username), class: "edit-profile-btn" do
-              = fa_icon "th-list"
-              Edit Profile
     .container
       = yield
+      - if current_user
+        .menu-frame
+          %btn.nav-btn{"data-role" => "none", class: "trigger"}
+            = fa_icon "cog 3x"
+        .nav-wrap
+          %ul.lead
+            %li
+              = link_to signout_path do
+                = fa_icon "sign-out"
+                Sign Out
+            %li
+              = link_to profile_path(current_user.username) do
+                = fa_icon "user"
+                Visit Profile
+            %li
+              = link_to refresh_profile_path, remote: true, class: "refresh-profile-btn" do
+                = fa_icon "refresh" 
+                Refresh Profile
+            %li
+              = link_to edit_profile_path(current_user.username), class: "edit-profile-btn" do
+                = fa_icon "th-list"
+                Edit Profile
