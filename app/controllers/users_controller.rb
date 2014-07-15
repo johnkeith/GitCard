@@ -29,7 +29,8 @@ class UsersController < ApplicationController
 
   def validate_url(url)
     url = url.downcase
-    if url.include?("http://www.") || url.include?("https://www.")
+    if url.include?("http://www.") || url.include?("https://www.") ||
+      url.include?("https://")
       url
     elsif url.include?("www.")
       "http://" + url
