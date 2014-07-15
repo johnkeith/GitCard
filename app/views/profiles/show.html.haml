@@ -16,6 +16,9 @@
                 = @user.description
                 %br
                 .social-links
+                  - if !@user.github_url.nil? && !@user.github_url.empty?
+                    %a{ href: @user.github_url, target: "_blank" }
+                      = fa_icon "github-square"
                   - if !@user.personal_site_url.nil? && !@user.personal_site_url.empty?
                     %a{ href: @user.personal_site_url, target: "_blank" }
                       = fa_icon "home"

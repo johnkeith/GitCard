@@ -34,8 +34,7 @@ class Repo < ActiveRecord::Base
   def self.create_repo(repo, user)
     Repo.create(
       user_id: user.id, name: repo[:name], full_name: repo[:full_name],
-      html_url: repo[:html_url], description: repo[:description],
-      profile_visibility: true
+      html_url: repo[:html_url], description: repo[:description]
     )
   end
 end
