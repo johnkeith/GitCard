@@ -24,8 +24,10 @@ class ProfilesController < ApplicationController
     @languages_bytes = languages.in_bytes
     @languages_percents = languages.in_percents(@languages_bytes)
     @repos = @user.repos.where(profile_visibility: true)
-
-    @velocity = VelocityCalculator.new(@user)
+    # API endpoint for calendar data stopped working around 8-18-14.
+    # Leaving VelocityCalculator class until issue can be addressed
+    
+    # @velocity = VelocityCalculator.new(@user)
   end
 
   def refresh
